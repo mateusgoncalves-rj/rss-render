@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSS Reader</title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/mateusgoncalves-rj/rss-render/refs/heads/main/rss.ico">
     <style>
-        /* Base styles inspired by old-school web design */
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: #f0f8ff;
@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         h1 {
@@ -29,7 +30,7 @@
             border: 3px solid #00509e;
             border-radius: 10px;
             background-color: #fff;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .feed-form {
@@ -55,6 +56,10 @@
             cursor: pointer;
             transition: background-color 0.3s;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
         .feed-form button:hover {
@@ -72,11 +77,10 @@
             border: 2px solid #00509e;
             border-radius: 5px;
             background-color: #e6f2ff;
-            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .feed-item:hover {
-            transform: scale(1.02);
             background-color: #cce4ff;
         }
 
@@ -90,11 +94,19 @@
             text-decoration: underline;
         }
 
-        .loading {
-            font-style: italic;
+        .feed-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive Design */
+        .loading {
+            font-style: italic;
+            text-align: center;
+        }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.5rem;
@@ -120,7 +132,13 @@
     <div class="container">
         <div class="feed-form">
             <input type="text" id="rssUrl" placeholder="Enter RSS feed URL...">
-            <button onclick="loadFeed()">Load Feed</button>
+            <button onclick="loadFeed()">
+                <span>Load Feed</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.418A6 6 0 1 1 8 2v1z"/>
+                    <path d="M8 1.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V2a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+            </button>
         </div>
         <ul id="feedList" class="feed-list"></ul>
     </div>
